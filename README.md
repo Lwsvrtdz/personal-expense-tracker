@@ -41,6 +41,22 @@ A modern web application built with Laravel and Vue.js for tracking personal and
   - Tailwind CSS
   - Chart.js
 
+## Project Structure
+
+```
+expense-tracker/
+├── src/                    # Laravel application
+│   ├── app/               # Application code
+│   ├── config/            # Configuration files
+│   ├── database/          # Database migrations and seeds
+│   ├── resources/         # Frontend resources (Vue, CSS, JS)
+│   ├── routes/            # Application routes
+│   └── ...
+├── docker-compose.yml     # Docker configuration
+├── .env                   # Environment variables
+└── README.md             # Project documentation
+```
+
 ## Requirements
 
 - Docker Desktop
@@ -61,7 +77,7 @@ A modern web application built with Laravel and Vue.js for tracking personal and
    ```bash
    docker run --rm \
        -u "$(id -u):$(id -g)" \
-       -v "$(pwd):/var/www/html" \
+       -v "$(pwd)/src:/var/www/html" \
        -w /var/www/html \
        laravelsail/php81-composer:latest \
        composer install --ignore-platform-reqs
@@ -69,35 +85,35 @@ A modern web application built with Laravel and Vue.js for tracking personal and
 
 3. Copy the environment file:
    ```bash
-   cp .env.example .env
+   cp src/.env.example .env
    ```
 
 4. Start the Docker containers:
    ```bash
-   ./vendor/bin/sail up -d
+   ./src/vendor/bin/sail up -d
    ```
 
 5. Generate application key:
    ```bash
-   ./vendor/bin/sail artisan key:generate
+   ./src/vendor/bin/sail artisan key:generate
    ```
 
 6. Run database migrations:
    ```bash
-   ./vendor/bin/sail artisan migrate
+   ./src/vendor/bin/sail artisan migrate
    ```
 
 7. Install and build frontend dependencies:
    ```bash
-   ./vendor/bin/sail npm install
-   ./vendor/bin/sail npm run build
+   ./src/vendor/bin/sail npm install
+   ./src/vendor/bin/sail npm run build
    ```
 
 ## Usage
 
 1. Start the application:
    ```bash
-   ./vendor/bin/sail up -d
+   ./src/vendor/bin/sail up -d
    ```
 
 2. Access the application:
@@ -109,12 +125,12 @@ A modern web application built with Laravel and Vue.js for tracking personal and
 
 - Run frontend development server:
   ```bash
-  ./vendor/bin/sail npm run dev
+  ./src/vendor/bin/sail npm run dev
   ```
 
 - Run tests:
   ```bash
-  ./vendor/bin/sail test
+  ./src/vendor/bin/sail test
   ```
 
 ## Key Features Usage
